@@ -13,11 +13,17 @@ pip3 install pipenv
 pipenv --three
 pipenv install boto3
 
-pipenv install -d ipython
-
-pipenv run ipython
+#Use ipython to run in command line
+#pipenv install -d ipython
+#pipenv run ipython
 
 ## write code in toronto.py
 
 ## Run
 pipenv run python toronto/toronto.py
+pipenv run python toronto/toronto.py <command> <--project=PROJECT>
+
+#Install click
+pipenv install click
+
+
