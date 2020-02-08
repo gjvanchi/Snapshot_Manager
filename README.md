@@ -20,4 +20,4 @@ pipenv run ipython
 ## write code in toronto.py
 
 ## Run
-pipenv run "python toronto/toronto.py"
+pipenv run python toronto/toronto.py
