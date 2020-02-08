@@ -22,6 +22,8 @@ pipenv install boto3
 ## Run
 pipenv run python toronto/toronto.py
 pipenv run python toronto/toronto.py <command> <--project=PROJECT>
+pipenv run python toronto/toronto.py instances list
+pipenv run python toronto/toronto.py  volumes list
 
 #Install click
 pipenv install click

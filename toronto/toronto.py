@@ -15,6 +15,33 @@ def filter_instances(project):
     return instances
 
 @click.group()
+def cli():
+    """toronto managed snapshots"""
+
+@cli.group('volumes')
+def volumes():
+    """Command for volumes"""
+
+@volumes.command('list')
+@click.option('--project', default=None,
+    help = "only volumes for project (tag Project:<name>) ")
+
+def ListAllVolumes(project):
+    "This is doc string : Lists all volumes"
+    instances = filter_instances(project)
+
+    for i in instances:
+        for v in i.volumes.all():
+            print(", ".join((
+                v.id,
+                i.id,
+                v.state,
+                str(v.size) + "GiB",
+                v.encrypted and "Encrypted" or "Not Encrypted"
+            )))
+    return
+
+@cli.group('instances')
 def instances():
     """Commands for instances"""
 
@@ -22,6 +49,7 @@ def instances():
 @instances.command('list')
 @click.option('--project', default=None,
     help = "only instances for project (tag Project:<name>) ")
+
 def ListAllInstances(project):
     "This is doc string : Lists all instances"
     instances = filter_instances(project)
@@ -46,6 +74,7 @@ def ListAllInstances(project):
 @instances.command('stop')
 @click.option('--project', default=None,
     help='Only instances for project')
+
 def stop_instances(project):
     "Stop EC2 instanes"
 
@@ -58,6 +87,7 @@ def stop_instances(project):
 @instances.command('start')
 @click.option('--project', default=None,
     help='Only instances for project')
+
 def start_instances(project):
     "Start EC2 instanes"
 
@@ -71,5 +101,5 @@ def start_instances(project):
     
         
 if __name__ == '__main__':
-    instances()
+    cli()
     
